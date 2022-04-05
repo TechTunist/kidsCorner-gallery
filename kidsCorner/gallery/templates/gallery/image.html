@@ -18,8 +18,8 @@
                 <a href="{% url 'gallery' %}" class="btn btn-dark my-3">Go Back</a>
                 <div style="height: 90vh;">
                     <img style="max-width: 100%; max-height: 100%;"
-                         src="https://i.pinimg.com/736x/d8/97/07/d897077ba549cbd32d92a7949d2b3643.jpg" alt="Card image cap"></img>
-                    <p>Description goes here...</p>
+                         src="{{image.image.url}}" alt="Card image cap"></img>
+                    <p>{{image.description}}</p>
                 </div>
             </dic>
         </div>

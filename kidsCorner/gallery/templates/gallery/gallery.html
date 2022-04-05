@@ -28,11 +28,10 @@
                       Categories
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">All</li>
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-
+                        <li class="list-group-item"><a href="{% url 'gallery' %}">All</a></li>
+                        {% for category in categories %}
+                        <li class="list-group-item"><a href="{% url 'gallery' %}?category={{category.name}}">{{category.name}}</a></li>
+                        {% endfor %}
                         <a href="{% url 'add' %}" class="btn btn-block btn-outline btn-dark btn-sm m-1">Add Photo</a>
 
                     </ul>
@@ -40,46 +39,19 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-
+                    {% for image in images %}
                     <div class="col-md-4">
                         <div class="card my-2">
-                            <img class="image-thumbnail" src="https://i.pinimg.com/736x/d8/97/07/d897077ba549cbd32d92a7949d2b3643.jpg" alt="Card image cap">
+                            <img class="image-thumbnail" src="{{image.image.url}}" alt="Card image cap">
                             <div class="card-body">
-                                <small>Category: Goku</small>
+                                <small>{{image.description}}</small>
                             </div>
-                            <a class="btn btn-outline-dark btn-sm m-1" href="{% url 'image' 5 %}">View</a>
+                            <a class="btn btn-outline-dark btn-sm m-1" href="{% url 'image' image.id %}">View</a>
                         </div>
                     </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbnail" src="https://i.pinimg.com/736x/d8/97/07/d897077ba549cbd32d92a7949d2b3643.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <small>Category: Goku</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1" href="{% url 'image' 5 %}">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbnail" src="https://i.pinimg.com/736x/d8/97/07/d897077ba549cbd32d92a7949d2b3643.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <small>Category: Goku</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1" href="{% url 'image' 5 %}">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbnail" src="https://i.pinimg.com/736x/d8/97/07/d897077ba549cbd32d92a7949d2b3643.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <small>Category: Goku</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1" href="{% url 'image' 5 %}">View</a>
-                        </div>
-                    </div>
+                    {% empty %}
+                    <h3>No Images to Show</h3>
+                    {% endfor %}
 
                 </div>
             </div>
